@@ -41,9 +41,17 @@ namespace Assets.Scripts.Third_Person
             _playerInput.Player.Vaccum.performed += OnVaccumPerformed;
             _playerInput.Player.Vaccum.canceled += OnVaccumCanceled;
             _playerInput.Player.Vaccum.Enable();
+
+            _playerInput.Player.Look.performed += OnLookPerfomed;
+            _playerInput.Player.Look.Enable();
             
             _playerInput.Player.Interact.performed += OnInteractPerformed;
             _playerInput.Player.Interact.Enable();
+        }
+
+        private void OnLookPerfomed(InputAction.CallbackContext context)
+        {
+            _inputHandler.HandleLookInputMouse(context.ReadValue<Vector2>());
         }
 
         private void OnInteractPerformed(InputAction.CallbackContext context)
