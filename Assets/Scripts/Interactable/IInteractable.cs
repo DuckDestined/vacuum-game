@@ -1,4 +1,9 @@
-public interface IInteractable
+using System;
+using UnityEngine;
+
+public abstract class BaseInteractable : MonoBehaviour
 {
-    public void Interact();
+    public bool AllowsMultipleInteractions;
+    public abstract void Interact(InteractionHandler interactionHandler);
+
 }

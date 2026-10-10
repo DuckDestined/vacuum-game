@@ -10,6 +10,7 @@ namespace Assets.Scripts.Third_Person
         private PlayerInput _playerInput;
         [SerializeField]
         private Third_Person.PlayerController _inputHandler;
+        [SerializeField] private InteractionHandler interactionHandler;
 
         private void Awake()
         {
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Third_Person
 
         private void OnInteractPerformed(InputAction.CallbackContext context)
         {
-            throw new NotImplementedException();
+            interactionHandler.Interact();
         }
 
         private void OnVaccumCanceled(InputAction.CallbackContext context)

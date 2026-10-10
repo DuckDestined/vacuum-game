@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.Third_Person
 {
-    public class PlayerController : MonoBehaviour, ICharacterController, ICustomInputHandler
+    public class PlayerController : BindableObjectBase, ICharacterController, ICustomInputHandler
     {
         [Header("Components")]
         public KinematicCharacterMotor Motor;
         public Transform CameraTransform;
-        public GameObject
+        public InteractionHandler interact;
 
         [Header("Settings")]
         [Tooltip("Whether to stop immediately when there's no input. If false, the character will decelerate to a stop.")]
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Third_Person
         public bool stopInstantlyOnNoInput = true;
         public float cableLength = 5f;
         public Transform plugPosition;
+
 
         [Header("Stable Movement")]
         public float stableSpeed = 10f;
@@ -148,7 +149,7 @@ namespace Assets.Scripts.Third_Person
                 Vector3 fromPlugToPredicted = predictedPosition - plugPosition.position;
                 fromPlugToPredicted.y = 0f;
 
-                if (fromPlugToPredicted.magnitude > cableLength)
+                if (fromPlugToPredicted.magnitude > cableLength && _isBound)
                 {
                     Vector3 fromPlugToCurrent = transform.position - plugPosition.position;
                     fromPlugToCurrent.y = 0f;
@@ -261,5 +262,5 @@ namespace Assets.Scripts.Third_Person
                 Debug.Log("Vaccum Off");
             }
         }
-    }
+}
 }
